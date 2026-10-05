@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.orf">
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+        <meta charset="UTF-8">
+        <title> Novo Projeto</title>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand">
+                <img src="/images/ifmtlogo.png" width="50" height="50" alr="IFMT"/>
+            </a>
+        </nav>
+
+        <section layout:fragment="conteudo">
+           <thead>
+            <div class="card">
+
+            <div class="card-herder tux-titulo-panel">
+                <span class="tux-titulo-panel">Pesquisa</span>
+            </div>
+           
+            <div class="card-body">
+            </thead>
+                <table class="table table-bardered table-striped">
+                    
+                   <tbody>  
+                        <tr scope="row" th:each="titulo : ${titulos}">
+                        <td class="text-center" th:text="${titulo.codigo}"></td>
+                        <td th:text="${titulo.descricao}"></td>
+                        <td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
+                        <td class="text-right" th:text="|R$ ${{titulo.valor}}"></td>
+                        <td class="text-center" th:text="${titulo.status.descricao}"></td>
+                        <td></td>
+                       <!--<td class="text-center">
+                            <span class="badge" th:text="${titulo.status.descricao}" th:classappend="${titulo.pendente ? 'badge-danger' : 'badge-success'}"></span>
+                        </td>
+                        <td scope="col"></td>-->
+                        </tr>
+                                 
+                        <tr>
+                        <td clospan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum registro Encontrado.</td>
+                        </tr>
+                    </tbody>
+                </table>
+          </div>
+        </div>
+        <script src="/js/jquery-3.4.1.min.js"></script> 
+        <script src="/js/jpopper.min.js"></script> 
+        <script src="/js/bootstrap.min.js"></script> 
+    </body>
+</html>
